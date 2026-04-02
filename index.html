@@ -12,12 +12,19 @@
             padding: 0;
             box-sizing: border-box;
         }
+        :root {
+            --gray-100: #f3f4f6;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
         main {
             max-width: 320px;
             margin-top: 32px;
             margin-left: auto;
             margin-right: auto;
-            background: #f3f4f6;
+            background: var(--gray-100);
             padding: 8px;
             border-radius: 8px;
             border: solid 1px #d1d5db;
@@ -27,11 +34,11 @@
         }
         main h1 {
             font-size: 30px;
-            color:  #1f2937;
+            color: var(--gray-900);
         }
         main p {
             font-size: 14px;
-            color:#4b5563;
+            color: var(--gray-500);
         }
         main div {
             margin-top: 8px;
@@ -39,8 +46,8 @@
         }
         main div code {
             font-size: 14px;
-            color:#4b5563;
-            background-color: #d1d5db ;
+            color: var(--gray-500);
+            background-color: var(--gray-300) ;
             border-radius: 4px;
             padding: 2px 6px 2px 6px;
         }
