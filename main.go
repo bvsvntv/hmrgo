@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 )
 
@@ -14,8 +15,11 @@ func main() {
 	fileServer := http.FileServer(http.Dir("."))
 	http.Handle("/", fileServer)
 
-	fmt.Printf("] Serving on http://localhost:%s\n", *port)
-	if err := http.ListenAndServe(":2002", nil); err != nil {
+	bind := "127.0.0.1"
+	addr := net.JoinHostPort(bind, *port)
+
+	fmt.Printf("] Local: http://localhost:%s\n", *port)
+	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal(err)
 	}
 }
