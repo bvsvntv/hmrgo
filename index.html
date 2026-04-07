@@ -42,7 +42,9 @@
         }
         main div {
             margin: 8px 0px 16px 0px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
         main div code {
             font-size: 14px;
@@ -61,6 +63,7 @@
 
             <div>
                 <code>go run main.go --port 6969</code>
+                <code>go run main.go --port 6969 --host</code>
             </div>
         </main>
     </body>
