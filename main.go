@@ -9,11 +9,12 @@ import (
 )
 
 func main() {
-	port := flag.String("port", "2002", "port to listen on")
+	port := flag.String("port", "2369", "port to listen on")
+	dir := flag.String("dir", ".", "directory to serve")
 	host := flag.Bool("host", false, "expose on LAN")
 	flag.Parse()
 
-	fileServer := http.FileServer(http.Dir("."))
+	fileServer := http.FileServer(http.Dir(*dir))
 	http.Handle("/", fileServer)
 
 	bind := "127.0.0.1"
@@ -22,9 +23,9 @@ func main() {
 	}
 	addr := net.JoinHostPort(bind, *port)
 
-	fmt.Printf("] Local: http://localhost:%s\n", *port)
+	fmt.Printf("] Local: http://localhost:%s,serving '%s' directory\n", *port, *dir)
 	if *host {
-		fmt.Printf("] Network: http://%s:%s\n", getOutboundIP(), *port)
+		fmt.Printf("] Network: http://%s:%s,serving '%s' directory\n", getOutboundIP(), *port, *dir)
 	}
 
 	if err := http.ListenAndServe(addr, nil); err != nil {
